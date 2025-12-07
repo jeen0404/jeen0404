@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeeva Ram | Senior Software Developer</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                black: '#050505',
+                dark: '#0a0a0f',
+                gray: '#1a1a24',
+                cyan: '#00f3ff',
+                blue: '#0066ff',
+                purple: '#bd00ff',
+                green: '#00ff9d',
+                text: '#e0e0e0'
+              }
+            },
+            fontFamily: {
+              sans: ['Rajdhani', 'sans-serif'],
+              mono: ['Share Tech Mono', 'monospace'],
+              display: ['Orbitron', 'sans-serif'],
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+      body {
+        background-color: #050505;
+        color: #e0e0e0;
+        overflow-x: hidden;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0f; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00f3ff; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0066ff; 
+      }
+
+      /* 3D Utilities */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .perspective-2000 {
+        perspective: 2000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+      }
+      
+      /* Neon Glows */
+      .neon-text {
+        text-shadow: 0 0 5px rgba(0, 243, 255, 0.7), 0 0 10px rgba(0, 243, 255, 0.5);
+      }
+      .neon-border {
+        box-shadow: 0 0 10px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+      }
+      .neon-border-green {
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2), inset 0 0 10px rgba(0, 255, 157, 0.1);
+      }
+
+      /* Animations */
+      @keyframes grid-move {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(50px); }
+      }
+      .animate-grid {
+        animation: grid-move 3s linear infinite;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes float-reverse {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(20px); }
+      }
+      .animate-float-reverse {
+        animation: float-reverse 7s ease-in-out infinite;
+      }
+
+      @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .animate-spin-slow {
+        animation: spin-slow 40s linear infinite;
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-slow {
+        0%, 100% { opacity: 0.1; transform: scale(1); }
+        50% { opacity: 0.3; transform: scale(1.2); }
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 10s ease-in-out infinite;
+      }
+    </style>
+
+    <!-- React & Babel for Standalone Usage -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react,typescript">
+      const { useState, useEffect, useRef } = React;
+      const { createRoot } = ReactDOM;
+
+      // --- Resume Data ---
+      const RESUME_DATA = {
+        personal: {
+          name: "JEEVA RAM",
+          role: "Senior Software Developer",
+          location: "Bengaluru, Karnataka, IN",
+          phone: "918504041569",
+          email: "jivan0404patel@gmail.com",
+          linkedin: "www.linkedin.com/in/jivan-patel",
+          summary: "5+ years of expertise in Python, Django, AWS, and full-stack development, delivering measurable impact through scalable solutions. Spearheaded a 40% boost in data processing efficiency at Publicis Sapient via Python/Pandas optimizations and RAG integration with LLMs (Gemini, DeepSeek). Proven cloud architect (EC2, Lambda, S3) with DevOps mastery (Docker, CI/CD)."
+        },
+        skills: {
+          languages: ["Python 3.6+", "SQL (Postgres/MySQL)", "Dart", "PSQL"],
+          frameworks: ["Django", "DRF", "Flask", "Fast API", "Celery", "Pandas", "Numpy", "Boto3", "Langchain", "NLTK", "Flutter"],
+          cloud: ["AWS (EC2, Lambda, S3, RDS, SQS)", "Elastic Beanstalk", "Route53", "Google Cloud", "Firebase"],
+          devops: ["Docker", "Kubernetes", "Bitbucket Pipelines", "AWS Code Deploy", "Linux (Amazon/Ubuntu/Kali)"],
+          databases: ["PostgreSQL", "MySQL", "DynamoDB", "MongoDB", "Cassandra", "Redis"],
+          tools: ["Grafana", "Prometheus", "Postman", "JIRA", "Slack", "Adobe XD", "VS Code"]
+        },
+        experience: [
+          {
+            company: "Publicis Sapient",
+            role: "Senior Technology Associate 1",
+            period: "2024-10 - Present",
+            location: "Gurgaon, IN",
+            highlights: [
+              "RAG for JIRA Ticket Resolution integration with LLMs.",
+              "Performance tuning using PostgreSQL and PGVector, improving vector-based query retrieval times by 60%."
+            ]
+          },
+          {
+            company: "Lendingkart <> Upwards",
+            role: "Senior Software Developer",
+            period: "2022-12 - 2024-10",
+            location: "Bangalore, IN",
+            highlights: [
+              "Migrated Backend from Python 3.6 to 3.12, achieving 10-30% performance boost.",
+              "Spearheaded end-to-end lifecycle for Banking Analysis & Credibility Decisioning Engines.",
+              "Reduced analysis costs by 40-45% and improved decision credibility to 87%.",
+              "Managed 5 Docker repositories, contributing to 87% total disbursement.",
+              "Revamped Fraud Control Unit with advanced algorithms (95% trust level)."
+            ]
+          },
+          {
+            company: "Corefactors",
+            role: "Software Engineer",
+            period: "2020-12 - 2022-12",
+            location: "Bangalore, IN",
+            highlights: [
+              "Awarded 'Employee of the Year' for exceptional performance.",
+              "Optimized AWS Lambda size by 20% using Layers and Parameter Store.",
+              "Reduced server load by 40% by migrating Django functions to Serverless.",
+              "Mobile App: Revamped UI resulting in 25% increase in satisfaction."
+            ]
+          },
+          {
+            company: "Praktice",
+            role: "Python Developer",
+            period: "2019-08 - 2020-04",
+            location: "Bengaluru, IN",
+            highlights: [
+              "Built scalable healthcare AI assistants on AWS.",
+              "Designed serverless APIs from scratch using Python and DynamoDB.",
+              "Worked with SQL and NoSQL databases like AWS RDBMS."
+            ]
+          }
+        ],
+        projects: [
+          {
+            name: "Raxs-X",
+            period: "2024-06 - Present",
+            tech: "Django, Redis, Middleware",
+            desc: "Developing a client library for real-time API logging. Captures metrics with minimal latency, supports custom caller identifiers, and exposes matrix-based performance data."
+          },
+          {
+            name: "SocialMedia App",
+            period: "2019-06 - 2020-02",
+            tech: "Flutter, Django DRF, Cassandra, Redis",
+            desc: "Designed and released a full-stack social media app. Handled user metadata with Postgres, feed with Cassandra, and session storage with Redis."
+          },
+          {
+            name: "Python Data Structure Lib",
+            period: "2020-02 - 2020-06",
+            tech: "Python",
+            desc: "Designed Link, Queue, and Stack classes for easy use on top of built-in types. Simplified DS uses by single import."
+          },
+          {
+            name: "Text to Speech",
+            period: "2018-07 - 2018-08",
+            tech: "Python, Google Voice",
+            desc: "Python-based project converting CLI text input to speech using Google voice modules."
+          }
+        ],
+        education: [
+          {
+            institution: "Rajasthan Technical University, Kota",
+            degree: "Bachelor of Technology, Computer Science",
+            period: "2016 - 2020",
+            details: "CHARTERED INSTITUTE OF TECHNOLOGY Abu Road, Rajasthan. (6.95 CGPA)"
+          }
+        ]
+      };
+
+      // --- Components ---
+
+      const CyberParticles = () => {
+        const canvasRef = useRef(null);
+
+        useEffect(() => {
+          const canvas = canvasRef.current;
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return;
+
+          let w = canvas.width = window.innerWidth;
+          let h = canvas.height = window.innerHeight;
+          
+          // Dynamic particle count based on screen size
+          const particleCount = Math.floor((w * h) / 12000); 
+          const particles = [];
+          
+          // Colors: Cyan, Purple, White
+          const colors = ['#00f3ff', '#bd00ff', '#ffffff'];
+
+          for(let i=0; i<particleCount; i++) {
+              particles.push({
+                  x: Math.random() * w,
+                  y: Math.random() * h,
+                  vx: (Math.random() - 0.5) * 0.3, // Velocity X
+                  vy: (Math.random() - 0.5) * 0.3, // Velocity Y
+                  size: Math.random() * 1.5 + 0.5,
+                  color: colors[Math.floor(Math.random() * colors.length)]
+              });
+          }
+          
+          let mouse = { x: -1000, y: -1000 };
+          
+          const handleMove = (e) => {
+              mouse.x = e.clientX;
+              mouse.y = e.clientY;
+          }
+          
+          const handleResize = () => {
+              w = canvas.width = window.innerWidth;
+              h = canvas.height = window.innerHeight;
+          }
+          
+          window.addEventListener('mousemove', handleMove);
+          window.addEventListener('resize', handleResize);
+          
+          const animate = () => {
+              ctx.clearRect(0,0,w,h);
+              
+              // Parallax Offset based on mouse position
+              const parallaxX = (mouse.x - w/2) * 0.02;
+              const parallaxY = (mouse.y - h/2) * 0.02;
+
+              particles.forEach(p => {
+                  p.x += p.vx;
+                  p.y += p.vy;
+                  
+                  // Wrap around screen
+                  if(p.x < 0) p.x = w;
+                  if(p.x > w) p.x = 0;
+                  if(p.y < 0) p.y = h;
+                  if(p.y > h) p.y = 0;
+                  
+                  // Apply parallax to drawing position
+                  const dx = p.x + parallaxX;
+                  const dy = p.y + parallaxY;
+                  
+                  // Distance to mouse for interaction
+                  const distMouseX = mouse.x - dx;
+                  const distMouseY = mouse.y - dy;
+                  const distMouse = Math.sqrt(distMouseX*distMouseX + distMouseY*distMouseY);
+                  
+                  // Connect to mouse if close
+                  if(distMouse < 150) {
+                      ctx.beginPath();
+                      ctx.strokeStyle = `rgba(0, 243, 255, ${0.4 * (1 - distMouse/150)})`;
+                      ctx.lineWidth = 0.8;
+                      ctx.moveTo(dx, dy);
+                      ctx.lineTo(mouse.x, mouse.y);
+                      ctx.stroke();
+                  }
+                  
+                  // Draw Particle
+                  ctx.beginPath();
+                  ctx.fillStyle = p.color;
+                  ctx.globalAlpha = 0.6;
+                  ctx.arc(dx, dy, p.size, 0, Math.PI*2);
+                  ctx.fill();
+              });
+              
+              // Separate connection loop for visual layering
+              ctx.lineWidth = 0.3;
+              for(let i=0; i<particles.length; i++) {
+                  const p1 = particles[i];
+                  const p1x = p1.x + parallaxX;
+                  const p1y = p1.y + parallaxY;
+
+                  for(let j=i+1; j<particles.length; j++) {
+                      const p2 = particles[j];
+                      const p2x = p2.x + parallaxX;
+                      const p2y = p2.y + parallaxY;
+                      
+                      const dx = p1x - p2x;
+                      const dy = p1y - p2y;
+                      const dist = Math.sqrt(dx*dx + dy*dy);
+                      
+                      if(dist < 100) {
+                          ctx.beginPath();
+                          // Gradient line based on distance
+                          ctx.strokeStyle = `rgba(100, 100, 255, ${0.15 * (1 - dist/100)})`;
+                          ctx.moveTo(p1x, p1y);
+                          ctx.lineTo(p2x, p2y);
+                          ctx.stroke();
+                      }
+                  }
+              }
+              
+              requestAnimationFrame(animate);
+          }
+          
+          const animId = requestAnimationFrame(animate);
+          
+          return () => {
+              window.removeEventListener('mousemove', handleMove);
+              window.removeEventListener('resize', handleResize);
+              cancelAnimationFrame(animId);
+          }
+        }, []);
+
+        return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none mix-blend-screen" />;
+      }
+
+      const GeometricBackground = () => (
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          {/* Nebula Gradients */}
+          <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-cyber-purple/10 rounded-full blur-[120px] animate-pulse-slow mix-blend-screen"></div>
+          <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-cyber-blue/10 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
+          
+          {/* Geometric Shapes */}
+          <div className="absolute top-[10%] left-[5%] opacity-20 animate-spin-slow">
+            <svg width="300" height="300" viewBox="0 0 100 100" fill="none" stroke="#00f3ff" strokeWidth="0.2">
+              <polygon points="50 5, 95 27, 95 73, 50 95, 5 73, 5 27" />
+              <circle cx="50" cy="50" r="30" strokeDasharray="5,5" />
+            </svg>
+          </div>
+
+          <div className="absolute top-[40%] right-[5%] opacity-10 animate-float-reverse">
+            <svg width="200" height="200" viewBox="0 0 100 100" fill="none" stroke="#bd00ff" strokeWidth="0.3">
+                <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" />
+                <rect x="25" y="25" width="50" height="50" transform="rotate(22.5 50 50)" />
+            </svg>
+          </div>
+
+          <div className="absolute bottom-[10%] left-[15%] opacity-10 animate-float">
+              <svg width="150" height="150" viewBox="0 0 100 100" fill="none" stroke="#00ff9d" strokeWidth="0.3">
+                <path d="M50 10 L90 90 L10 90 Z" />
+                <circle cx="50" cy="60" r="10" />
+              </svg>
+          </div>
+        </div>
+      );
+
+      const TiltCard = ({ children, className = "", intensity = 15 }) => {
+        const [transform, setTransform] = useState("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
+        const [shine, setShine] = useState({ opacity: 0, x: 0, y: 0 });
+        
+        const handleMouseMove = (e) => {
+          const card = e.currentTarget;
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          // Calculate rotation
+          const rotateX = ((y - centerY) / centerY) * -intensity;
+          const rotateY = ((x - centerX) / centerX) * intensity;
+
+          setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`);
+          setShine({ opacity: 1, x, y });
+        };
+
+        const handleMouseLeave = () => {
+          setTransform("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
+          setShine({ ...shine, opacity: 0 });
+        };
+
+        return (
+          <div 
+            className={`relative transition-all duration-200 ease-out transform-style-3d ${className}`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transform }}
+          >
+            <div 
+              className="pointer-events-none absolute inset-0 z-50 rounded-xl"
+              style={{
+                background: `radial-gradient(circle at ${shine.x}px ${shine.y}px, rgba(255,255,255,0.15), transparent 80%)`,
+                opacity: shine.opacity,
+                transition: 'opacity 0.2s'
+              }}
+            />
+            {children}
+          </div>
+        );
+      };
+
+      const SectionHeader = ({ title, icon }) => (
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-12 h-12 rounded-lg bg-cyber-gray border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan text-xl neon-border">
+            <i className={`fas ${icon}`}></i>
+          </div>
+          <h2 className="text-4xl font-display font-bold text-white tracking-wider">
+            {title} <span className="text-cyber-cyan">.</span>
+          </h2>
+          <div className="h-[1px] bg-gradient-to-r from-cyber-cyan/50 to-transparent flex-grow ml-4"></div>
+        </div>
+      );
+
+      const SkillBadge = ({ skill, type }) => {
+        let colorClass = "border-cyber-cyan/30 text-cyber-cyan bg-cyber-cyan/5";
+        if (type === 'backend') colorClass = "border-cyber-green/30 text-cyber-green bg-cyber-green/5";
+        if (type === 'devops') colorClass = "border-cyber-purple/30 text-cyber-purple bg-cyber-purple/5";
+        if (type === 'db') colorClass = "border-cyber-blue/30 text-cyber-blue bg-cyber-blue/5";
+
+        return (
+          <div className={`px-4 py-2 rounded font-mono text-sm border ${colorClass} hover:bg-opacity-20 transition-all cursor-default`}>
+            {skill}
+          </div>
+        );
+      };
+
+      const TimelineItem = ({ job, index }) => (
+        <div className="relative pl-8 md:pl-0">
+          {/* Center Line for Desktop */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-cyber-gray transform -translate-x-1/2"></div>
+          
+          <div className={`md:flex items-center justify-between mb-16 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+            {/* Spacer for the other side */}
+            <div className="hidden md:block w-5/12"></div>
+            
+            {/* Center Dot */}
+            <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-cyber-black border-2 border-cyber-cyan rounded-full transform -translate-x-[5px] md:-translate-x-1/2 mt-6 z-10 animate-pulse-glow"></div>
+            
+            {/* Content Card */}
+            <div className="w-full md:w-5/12">
+              <TiltCard className="bg-cyber-gray/80 backdrop-blur-sm border border-cyber-gray p-6 rounded-xl hover:border-cyber-cyan/50 transition-colors">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-display font-bold text-white">{job.role}</h3>
+                  <span className="text-xs font-mono text-cyber-cyan border border-cyber-cyan/30 px-2 py-1 rounded">{job.period}</span>
+                </div>
+                <div className="text-cyber-blue font-bold mb-4 flex items-center gap-2">
+                  <i className="fas fa-building"></i> {job.company}
+                  <span className="text-gray-500 text-sm font-normal">• {job.location}</span>
+                </div>
+                <ul className="space-y-2">
+                  {job.highlights.map((point, i) => (
+                    <li key={i} className="text-gray-400 text-sm pl-4 relative">
+                      <span className="absolute left-0 top-2 w-1 h-1 bg-cyber-green rounded-full"></span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </TiltCard>
+            </div>
+          </div>
+        </div>
+      );
+
+      const ProjectCard = ({ project }) => (
+        <TiltCard className="h-full bg-cyber-gray/50 border border-cyber-gray/50 p-6 rounded-xl hover:border-cyber-purple/50 hover:shadow-[0_0_25px_rgba(189,0,255,0.2)] group transition-all duration-300">
+          <div className="flex justify-between items-start mb-4">
+            <div className="p-3 bg-cyber-black rounded-lg border border-cyber-purple/30 text-cyber-purple group-hover:bg-cyber-purple group-hover:text-white group-hover:shadow-[0_0_15px_rgba(189,0,255,0.6)] transition-all duration-300">
+              <i className="fas fa-code-branch"></i>
+            </div>
+            <span className="font-mono text-xs text-gray-500">{project.period}</span>
+          </div>
+          <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-cyber-purple transition-colors duration-300">{project.name}</h3>
+          <p className="text-sm font-mono text-cyber-cyan mb-4">{project.tech}</p>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            {project.desc}
+          </p>
+        </TiltCard>
+      );
+
+      const Particle = ({ style }) => (
+        <div 
+          className="absolute bg-white rounded-full opacity-20 animate-float pointer-events-none"
+          style={style}
+        />
+      );
+
+      const Hero3D = () => {
+        const [mouse, setMouse] = useState({ x: 0, y: 0 });
+        const [particles, setParticles] = useState([]);
+
+        useEffect(() => {
+          // Generate static particles on mount
+          const newParticles = Array.from({ length: 30 }).map(() => ({
+            width: Math.random() * 3 + 1 + 'px',
+            height: Math.random() * 3 + 1 + 'px',
+            top: Math.random() * 100 + '%',
+            left: Math.random() * 100 + '%',
+            animationDuration: Math.random() * 5 + 3 + 's',
+            animationDelay: Math.random() * 5 + 's',
+            background: Math.random() > 0.8 ? '#00f3ff' : '#ffffff'
+          }));
+          setParticles(newParticles);
+
+          const handleMove = (e) => {
+            setMouse({
+              x: (e.clientX / window.innerWidth - 0.5) * 20,
+              y: (e.clientY / window.innerHeight - 0.5) * 20
+            });
+          };
+          window.addEventListener('mousemove', handleMove);
+          return () => window.removeEventListener('mousemove', handleMove);
+        }, []);
+
+        return (
+          <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden perspective-1000">
+            {/* Background Grid - Floor */}
+            <div 
+              className="absolute bottom-0 left-[-50%] right-[-50%] h-[50vh] bg-[linear-gradient(transparent_0%,rgba(0,243,255,0.1)_100%)]"
+              style={{
+                transform: `rotateX(60deg) translateZ(-100px) translateY(${mouse.y * 2}px)`,
+              }}
+            >
+              <div className="w-full h-full bg-[size:50px_50px] bg-[linear-gradient(to_right,rgba(0,243,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,243,255,0.05)_1px,transparent_1px)] animate-grid"></div>
+            </div>
+
+            {/* Floating Particles/Stars */}
+            <div className="absolute inset-0 overflow-hidden" style={{ transform: `translateY(${mouse.y * -1}px) translateX(${mouse.x * -1}px)`}}>
+              {particles.map((p, i) => <Particle key={i} style={p} />)}
+            </div>
+
+            {/* 3D Content */}
+            <div 
+              className="z-10 text-center transform-style-3d"
+              style={{
+                transform: `rotateX(${-mouse.y}deg) rotateY(${mouse.x}deg)`
+              }}
+            >
+              <div className="mb-4 inline-block px-4 py-1 rounded-full border border-cyber-green/50 bg-cyber-green/10 text-cyber-green font-mono text-sm animate-pulse">
+                <i className="fas fa-terminal mr-2"></i> SYSTEM ONLINE
+              </div>
+              
+              <h1 className="text-6xl md:text-9xl font-display font-black text-white mb-4 tracking-tighter neon-text select-none"
+                  style={{ transform: 'translateZ(50px)' }}>
+                {RESUME_DATA.personal.name}
+              </h1>
+              
+              <div className="flex items-center justify-center gap-4 text-xl md:text-2xl font-mono text-cyber-cyan mb-8"
+                  style={{ transform: 'translateZ(30px)' }}>
+                <span className="opacity-50">&lt;</span>
+                {RESUME_DATA.personal.role}
+                <span className="opacity-50">/&gt;</span>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4 text-gray-400 font-mono text-sm md:text-base max-w-2xl mx-auto"
+                  style={{ transform: 'translateZ(20px)' }}>
+                  <a href={`mailto:${RESUME_DATA.personal.email}`} className="hover:text-white hover:bg-cyber-blue/20 px-3 py-1 rounded transition-colors border border-transparent hover:border-cyber-blue/50">
+                    <i className="fas fa-envelope mr-2"></i>Email
+                  </a>
+                  <a href={`https://${RESUME_DATA.personal.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:bg-cyber-blue/20 px-3 py-1 rounded transition-colors border border-transparent hover:border-cyber-blue/50">
+                    <i className="fab fa-linkedin mr-2"></i>LinkedIn
+                  </a>
+                  <span className="px-3 py-1 border border-transparent">
+                    <i className="fas fa-map-marker-alt mr-2"></i>{RESUME_DATA.personal.location}
+                  </span>
+              </div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-70">
+              <span className="text-[10px] font-mono tracking-[0.3em] text-cyber-cyan uppercase">Initialize</span>
+              <div className="w-[1px] h-16 bg-gradient-to-b from-cyber-cyan to-transparent"></div>
+            </div>
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <div className="min-h-screen bg-cyber-black text-cyber-text selection:bg-cyber-cyan selection:text-black">
+            
+            <GeometricBackground />
+            <CyberParticles />
+
+            <Hero3D />
+
+            <main className="max-w-7xl mx-auto px-6 py-20 relative z-10 space-y-32">
+              
+              {/* Summary Section */}
+              <section>
+                <TiltCard className="bg-cyber-gray/30 backdrop-blur-md border-l-4 border-cyber-cyan p-8 md:p-12 rounded-r-xl">
+                  <h2 className="text-2xl font-display text-white mb-6 flex items-center">
+                    <i className="fas fa-user-astronaut mr-4 text-cyber-cyan"></i>
+                    EXECUTIVE_SUMMARY
+                  </h2>
+                  <p className="font-mono text-lg leading-relaxed text-gray-300">
+                    {RESUME_DATA.personal.summary}
+                  </p>
+                </TiltCard>
+              </section>
+
+              {/* Skills Matrix */}
+              <section>
+                <SectionHeader title="SKILL_MATRIX" icon="fa-microchip" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <TiltCard className="bg-cyber-dark border border-cyber-gray p-6 rounded-xl">
+                    <h3 className="text-cyber-green font-display text-xl mb-4 border-b border-cyber-gray pb-2">
+                      <i className="fas fa-server mr-2"></i> Backend & Libraries
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {RESUME_DATA.skills.languages.map(s => <SkillBadge key={s} skill={s} type="backend" />)}
+                      {RESUME_DATA.skills.frameworks.map(s => <SkillBadge key={s} skill={s} type="backend" />)}
+                    </div>
+                  </TiltCard>
+
+                  <TiltCard className="bg-cyber-dark border border-cyber-gray p-6 rounded-xl">
+                    <h3 className="text-cyber-purple font-display text-xl mb-4 border-b border-cyber-gray pb-2">
+                      <i className="fas fa-cloud mr-2"></i> Cloud & DevOps
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {RESUME_DATA.skills.cloud.map(s => <SkillBadge key={s} skill={s} type="devops" />)}
+                      {RESUME_DATA.skills.devops.map(s => <SkillBadge key={s} skill={s} type="devops" />)}
+                    </div>
+                  </TiltCard>
+
+                  <TiltCard className="bg-cyber-dark border border-cyber-gray p-6 rounded-xl">
+                    <h3 className="text-cyber-blue font-display text-xl mb-4 border-b border-cyber-gray pb-2">
+                      <i className="fas fa-database mr-2"></i> Data & Storage
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {RESUME_DATA.skills.databases.map(s => <SkillBadge key={s} skill={s} type="db" />)}
+                    </div>
+                  </TiltCard>
+                  
+                  <TiltCard className="bg-cyber-dark border border-cyber-gray p-6 rounded-xl">
+                    <h3 className="text-cyber-cyan font-display text-xl mb-4 border-b border-cyber-gray pb-2">
+                      <i className="fas fa-tools mr-2"></i> Tools & Utility
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {RESUME_DATA.skills.tools.map(s => <SkillBadge key={s} skill={s} type="default" />)}
+                    </div>
+                  </TiltCard>
+                </div>
+              </section>
+
+              {/* Experience Timeline */}
+              <section>
+                <SectionHeader title="EXECUTION_LOG" icon="fa-history" />
+                <div className="relative">
+                  {RESUME_DATA.experience.map((job, idx) => (
+                    <TimelineItem key={idx} job={job} index={idx} />
+                  ))}
+                </div>
+              </section>
+
+              {/* Projects Grid */}
+              <section>
+                <SectionHeader title="DEPLOYED_MODULES" icon="fa-rocket" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {RESUME_DATA.projects.map((project, idx) => (
+                    <ProjectCard key={idx} project={project} />
+                  ))}
+                </div>
+              </section>
+
+              {/* Education Section */}
+              <section>
+                <SectionHeader title="KNOWLEDGE_BASE" icon="fa-graduation-cap" />
+                <div className="grid grid-cols-1 gap-6">
+                  {RESUME_DATA.education.map((edu, idx) => (
+                    <TiltCard key={idx} className="bg-cyber-gray/30 border border-cyber-gray p-8 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                      <div>
+                        <h3 className="text-2xl font-display font-bold text-white mb-2">{edu.institution}</h3>
+                        <p className="text-cyber-cyan font-mono text-lg mb-1">{edu.degree}</p>
+                        <p className="text-gray-400 text-sm font-mono">{edu.details}</p>
+                      </div>
+                      <div className="bg-cyber-black border border-cyber-cyan/30 px-4 py-2 rounded font-mono text-cyber-cyan whitespace-nowrap">
+                        {edu.period}
+                      </div>
+                    </TiltCard>
+                  ))}
+                </div>
+              </section>
+
+            </main>
+
+            {/* Footer */}
+            <footer className="border-t border-cyber-gray bg-cyber-dark py-12 text-center mt-20 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+              <h2 className="text-2xl font-display font-bold text-white mb-6">INITIATE_CONTACT</h2>
+              <div className="flex justify-center gap-8 mb-8">
+                <a href={`mailto:${RESUME_DATA.personal.email}`} className="text-gray-400 hover:text-cyber-cyan transition-colors text-2xl">
+                  <i className="fas fa-envelope"></i>
+                </a>
+                <a href={`https://${RESUME_DATA.personal.linkedin}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyber-blue transition-colors text-2xl">
+                  <i className="fab fa-linkedin"></i>
+                </a>
+              </div>
+              <p className="font-mono text-gray-500 text-sm">
+                {RESUME_DATA.personal.name} • {RESUME_DATA.personal.role} • 2024
+              </p>
+            </footer>
+          </div>
+        );
+      };
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
